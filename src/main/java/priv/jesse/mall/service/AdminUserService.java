@@ -60,11 +60,12 @@ public interface AdminUserService {
 
     /**
      * 检查登录
+     * 
      * @param request
      * @param username
      * @param pwd
      * @return
      */
-    AdminUser checkLogin(HttpServletRequest request,String username, String pwd);
+    AdminUser checkLogin(HttpServletRequest request, String username, String pwd);
 
 }
