@@ -13,6 +13,15 @@ import javax.servlet.http.HttpSession;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
+/**
+ * AuthorizationFilter 单元测试
+ *
+ * 目标：验证权限过滤器对不同 URL 的处理行为（放行/重定向）。
+ *
+ * 覆盖点：
+ * 1) 访问后台资源且未登录（Session 无 login_user）→ 302 重定向到后台登录页
+ * 2) 访问公开页面（如用户登录页）→ 直接放行到 chain.doFilter
+ */
 public class AuthorizationFilterTest {
 
     @Test

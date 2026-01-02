@@ -3,6 +3,13 @@ package priv.jesse.mall.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * DesUtil 工具类单元测试
+ *
+ * 覆盖点：
+ * 1. 加密 -> 解密结果应与原文一致（正向互逆）
+ * 2. decrypt 传入 null 应返回 null，保证空安全
+ */
 public class DesUtilTest {
 
     private static final String KEY = "wow!@#$%"; // 8 字节

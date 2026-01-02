@@ -17,7 +17,13 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 /**
- * 只验证纯粹业务分支，不依赖 Spring 容器。
+ * OrderServiceImpl 单元测试
+ *
+ * <p>目的：覆盖 "支付" 业务分支，不启动 Spring 容器，使用 Mockito Mock Dao 依赖。</p>
+ *
+ * 断言点：
+ * 1. pay() 传入合法订单 id → 调用 updateState 将状态置为待发货。
+ * 2. pay() 传入不存在订单 id → 抛 RuntimeException。
  */
 @RunWith(MockitoJUnitRunner.class)
 public class OrderServiceImplTest {
