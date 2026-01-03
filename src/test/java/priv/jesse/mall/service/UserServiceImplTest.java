@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 import priv.jesse.mall.dao.UserDao;
 import priv.jesse.mall.entity.User;
 import priv.jesse.mall.service.impl.UserServiceImpl;
@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 /**
@@ -46,8 +45,8 @@ public class UserServiceImplTest {
 
     @Test
     public void checkLogin_success_shouldReturnUser() {
-        when(userDao.findByUsernameAndPassword("demo","123")).thenReturn(demo);
-        User u = userService.checkLogin("demo","123");
+        when(userDao.findByUsernameAndPassword("demo", "123")).thenReturn(demo);
+        User u = userService.checkLogin("demo", "123");
         assertNotNull(u);
         assertEquals(Integer.valueOf(1), u.getId());
     }
@@ -55,7 +54,7 @@ public class UserServiceImplTest {
     @Test
     public void checkLogin_fail_shouldReturnNull() {
         when(userDao.findByUsernameAndPassword(anyString(), anyString())).thenReturn(null);
-        User u = userService.checkLogin("demo","wrong");
+        User u = userService.checkLogin("demo", "wrong");
         assertNull(u);
     }
 
@@ -76,4 +75,3 @@ public class UserServiceImplTest {
         assertEquals("demo", list.get(0).getUsername());
     }
 }
-

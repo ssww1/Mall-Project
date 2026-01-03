@@ -6,14 +6,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 import priv.jesse.mall.dao.OrderDao;
 import priv.jesse.mall.dao.OrderItemDao;
 import priv.jesse.mall.dao.ProductDao;
 import priv.jesse.mall.entity.Order;
 import priv.jesse.mall.service.impl.OrderServiceImpl;
 
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 /**

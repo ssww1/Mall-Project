@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.*;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.mock.web.MockHttpServletRequest;
 import priv.jesse.mall.entity.OrderItem;
 import priv.jesse.mall.entity.Product;
@@ -63,7 +64,7 @@ public class ShopCartServiceImplTest {
         cartService.addCart(PID, request);
         List<OrderItem> list = cartService.listCart(request);
         Assert.assertEquals(1, list.size());
-        Assert.assertEquals(1, list.get(0).getCount());
+        Assert.assertEquals(Integer.valueOf(1), list.get(0).getCount());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class ShopCartServiceImplTest {
         cartService.addCart(PID, request);
         List<OrderItem> list = cartService.listCart(request);
         Assert.assertEquals(1, list.size());
-        Assert.assertEquals(2, list.get(0).getCount());
+        Assert.assertEquals(Integer.valueOf(2), list.get(0).getCount());
     }
 
     @Test

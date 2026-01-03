@@ -1,6 +1,5 @@
 package priv.jesse.mall.entity;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -50,6 +49,9 @@ public class AdminUser implements Serializable {
     }
 
     public void setPassword(String password) {
+        // 注意：如果密码是 BCrypt 密文（以 $2a$ 或 $2b$ 开头），不应该 trim
+        // 因为 BCrypt 密文是固定60字符，前后不应该有空格
+        // 但为了兼容性，保留 trim（BCrypt 密文通常不会有空格）
         this.password = password == null ? null : password.trim();
     }
 
@@ -66,8 +68,10 @@ public class AdminUser implements Serializable {
         }
         AdminUser other = (AdminUser) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-                && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()));
+                && (this.getUsername() == null ? other.getUsername() == null
+                        : this.getUsername().equals(other.getUsername()))
+                && (this.getPassword() == null ? other.getPassword() == null
+                        : this.getPassword().equals(other.getPassword()));
     }
 
     @Override

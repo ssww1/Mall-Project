@@ -1,6 +1,5 @@
 package priv.jesse.mall.utils;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.*;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.FileSystemUtils;
