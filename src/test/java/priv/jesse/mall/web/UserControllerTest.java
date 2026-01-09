@@ -13,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import priv.jesse.mall.entity.User;
-import priv.jesse.mall.entity.pojo.ResultBean;
 import priv.jesse.mall.service.UserService;
 
 import java.util.Collections;
@@ -23,25 +22,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * UserController 集成测试
+ * UserController 集成测试（MockMvc）
  *
  * 使用 MockMvc + MockBean 隔离 Service 依赖，验证：
- * 1. 登录成功重定向 & Session 写入
- * 2. 用户名唯一性校验接口
+ * 1. 登录成功场景的重定向及 Session 写入
+ * 2. 用户名唯一性接口 JSON 返回值
+ *
+ * 说明：使用 @MockBean mock 掉 UserService，聚焦 Web 层行为。
+ * 注意：测试环境已禁用 Druid WebStatFilter，避免 NullPointerException。
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-/**
- * UserController 集成测试（MockMvc）
- *
- * 目标：
- * 1. 验证登录成功场景的重定向及 Session 写入
- * 2. 验证用户名唯一性接口 JSON 返回值
- *
- * 说明：使用 @MockBean mock 掉 UserService，聚焦 Web 层行为。
- */
 public class UserControllerTest {
 
     @Autowired

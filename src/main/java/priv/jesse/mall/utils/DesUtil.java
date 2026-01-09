@@ -1,14 +1,12 @@
 package priv.jesse.mall.utils;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 /**
  * DES 加密/解密工具类（演示用途）。
@@ -40,8 +38,8 @@ public class DesUtil {
     public static String encrypt(String data, String key) throws Exception {
         // 1) 执行 DES 加密，得到二进制密文
         byte[] bt = encrypt(data.getBytes(), key.getBytes());
-        // 2) 转为 Base64 文本，便于存储/传输
-        return new BASE64Encoder().encode(bt);
+        // 2) 转为 Base64 文本，便于存储/传输（使用 Java 8+ 标准 Base64）
+        return Base64.getEncoder().encodeToString(bt);
     }
 
     /**
@@ -56,9 +54,8 @@ public class DesUtil {
             return null;
         }
 
-        // 1) Base64 解码为二进制密文
-        BASE64Decoder decoder = new BASE64Decoder();
-        byte[] buf = decoder.decodeBuffer(data);
+        // 1) Base64 解码为二进制密文（使用 Java 8+ 标准 Base64）
+        byte[] buf = Base64.getDecoder().decode(data);
 
         // 2) DES 解密
         byte[] bt = decrypt(buf, key.getBytes());

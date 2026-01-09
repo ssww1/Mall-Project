@@ -1,8 +1,6 @@
 package priv.jesse.mall.infra;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
 import priv.jesse.mall.filter.AuthorizationFilter;
 
 import javax.servlet.FilterChain;
@@ -32,8 +30,9 @@ public class AuthorizationFilterTest {
         FilterChain chain = mock(FilterChain.class);
         HttpSession session = mock(HttpSession.class);
 
+        // 使用不包含 "product" 的后台 URL（因为 Filter 会放行包含 product 的路径）
         when(req.getMethod()).thenReturn("GET");
-        when(req.getRequestURL()).thenReturn(new StringBuffer("http://127.0.0.1:8081/mall/admin/product/toList.html"));
+        when(req.getRequestURL()).thenReturn(new StringBuffer("http://127.0.0.1:8081/mall/admin/user/toList.html"));
         when(req.getSession()).thenReturn(session);
         when(session.getAttribute("login_user")).thenReturn(null);
 
